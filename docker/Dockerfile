@@ -25,7 +25,11 @@ EXPOSE ${EXPOSED_PORT}
 ENV SPRING_PROFILES_ACTIVE docker
 
 COPY --from=builder application/dependencies/ ./
+RUN true
 COPY --from=builder application/spring-boot-loader/ ./
+RUN true
 COPY --from=builder application/snapshot-dependencies/ ./
+RUN true
 COPY --from=builder application/application/ ./
+RUN true
 ENTRYPOINT ["java", "org.springframework.boot.loader.JarLauncher"]
