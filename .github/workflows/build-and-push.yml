@@ -33,22 +33,22 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       -
         name: Push admin-server
-        run: docker push miinovatec/spring-petclinic-admin-server:$TAG_VERSION | docker push miinovatec/spring-petclinic-admin-server:latest
+        run: docker push inspectit/spring-petclinic-admin-server:$TAG_VERSION | docker push inspectit/spring-petclinic-admin-server:latest
       -
         name: Push api-gateway
-        run: docker push miinovatec/spring-petclinic-api-gateway:$TAG_VERSION | docker push miinovatec/spring-petclinic-api-gateway:latest
+        run: docker push inspectit/spring-petclinic-api-gateway:$TAG_VERSION | docker push inspectit/spring-petclinic-api-gateway:latest
       -
         name: Push config-server
-        run: docker push miinovatec/spring-petclinic-config-server:$TAG_VERSION | docker push miinovatec/spring-petclinic-config-server:latest
+        run: docker push inspectit/spring-petclinic-config-server:$TAG_VERSION | docker push inspectit/spring-petclinic-config-server:latest
       -
         name: Push customers-service
-        run: docker push miinovatec/spring-petclinic-customers-service:$TAG_VERSION | docker push miinovatec/spring-petclinic-customers-service:latest
+        run: docker push inspectit/spring-petclinic-customers-service:$TAG_VERSION | docker push inspectit/spring-petclinic-customers-service:latest
       -
         name: Push discovery-server
-        run: docker push miinovatec/spring-petclinic-discovery-server:$TAG_VERSION | docker push miinovatec/spring-petclinic-discovery-server:latest
+        run: docker push inspectit/spring-petclinic-discovery-server:$TAG_VERSION | docker push inspectit/spring-petclinic-discovery-server:latest
       -
         name: Push vets-service
-        run: docker push miinovatec/spring-petclinic-vets-service:$TAG_VERSION | docker push miinovatec/spring-petclinic-vets-service:latest
+        run: docker push inspectit/spring-petclinic-vets-service:$TAG_VERSION | docker push inspectit/spring-petclinic-vets-service:latest
       -
         name: Push visits-service
-        run: docker push miinovatec/spring-petclinic-visits-service:$TAG_VERSION | docker push miinovatec/spring-petclinic-visits-service:latest
+        run: docker push inspectit/spring-petclinic-visits-service:$TAG_VERSION | docker push inspectit/spring-petclinic-visits-service:latest
