@@ -1,0 +1,54 @@
+name: Docker Build and Push
+
+on:
+  push:
+    branches:
+      - 'master'
+
+env:
+  TAG_VERSION: 1.1
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      -
+        name: Checkout
+        uses: actions/checkout@v2
+      -
+        name: Set up JDK 11
+        uses: actions/setup-java@v2
+        with:
+          java-version: '11'
+          distribution: 'adopt'
+      -
+        name: Build Docker Images with Maven
+        run: ./mvnw clean install -P buildDocker -DskipTests
+      -
+        name: Docker Ligin
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+      -
+        name: Push admin-server
+        run: docker push miinovatec/spring-petclinic-admin-server:$TAG_VERSION | docker push miinovatec/spring-petclinic-admin-server:latest
+      -
+        name: Push api-gateway
+        run: docker push miinovatec/spring-petclinic-api-gateway:$TAG_VERSION | docker push miinovatec/spring-petclinic-api-gateway:latest
+      -
+        name: Push config-server
+        run: docker push miinovatec/spring-petclinic-config-server:$TAG_VERSION | docker push miinovatec/spring-petclinic-config-server:latest
+      -
+        name: Push customers-service
+        run: docker push miinovatec/spring-petclinic-customers-service:$TAG_VERSION | docker push miinovatec/spring-petclinic-customers-service:latest
+      -
+        name: Push discovery-server
+        run: docker push miinovatec/spring-petclinic-discovery-server:$TAG_VERSION | docker push miinovatec/spring-petclinic-discovery-server:latest
+      -
+        name: Push vets-service
+        run: docker push miinovatec/spring-petclinic-vets-service:$TAG_VERSION | docker push miinovatec/spring-petclinic-vets-service:latest
+      -
+        name: Push visits-service
+        run: docker push miinovatec/spring-petclinic-visits-service:$TAG_VERSION | docker push miinovatec/spring-petclinic-visits-service:latest
